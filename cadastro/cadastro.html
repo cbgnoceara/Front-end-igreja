@@ -9,13 +9,15 @@
 <body>
   <div class="container">
     <h1>Cadastro</h1>
-    <form action="/cadastro" method="POST" class="form-group">
-      <input type="text" name="apelido" placeholder="Apelido" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <input type="password" name="senha" placeholder="Senha" required>
+    <form id="formCadastro" class="form-group">
+      <input type="text" id="apelido" placeholder="Apelido" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="senha" placeholder="Senha" required>
       <button type="submit" class="btn">Cadastrar</button>
     </form>
     <p>Já tem uma conta? <a href="/login/login.html">Entrar</a></p>
   </div>
+
+  <script src="cadastro.js"></script>
 </body>
 </html>

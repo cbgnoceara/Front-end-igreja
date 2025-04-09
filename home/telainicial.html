@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Tela Inicial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="telainicial.css">
+</head>
+<body>
+  <h1>Bem-vindo à Tela Inicial!</h1>
+  <p>Você está logado com sucesso.</p>
+
+  <h2>Escolha uma sala para reservar:</h2>
+
+  <div class="sala-opcoes">
+    <button onclick="selecionarSala('Nave')">Nave</button>
+    <button onclick="selecionarSala('Escolinha')">Escolinha</button>
+  </div>
+
+  <div id="formReserva" style="display:none; margin-top: 20px;">
+    <h3>Reservar sala: <span id="salaSelecionada"></span></h3>
+    <label for="data">Escolha a data:</label>
+    <input type="date" id="data" required>
+    <button onclick="fazerReserva()">Confirmar Reserva</button>
+    <p id="infoNave"></p>
+    <p id="infoEscolinha"></p>
+
+  </div>
+
+  <button class="logout-btn" onclick="logout()">Sair</button>
+
+  <h3>Reservas já feitas:</h3>
+  <ul id="listaReservas" class="reserva-lista"></ul>
+
+
+  <script src="telainicial.js"></script>
+</body>
+</html>
