@@ -1,47 +1,50 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Tela Inicial</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="telainicial.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reserva de Salas</title>
+  <link rel="stylesheet" href="telainicial.css" />
 </head>
 <body>
-  <h1>Bem-vindo à Tela Inicial!</h1>
-  <p>Você está logado com sucesso.</p>
+  <header>
+    <h1>Reservas de Salas</h1>
+    <button onclick="logout()">Sair</button>
+  </header>
 
-  <h2>Escolha uma sala para reservar:</h2>
+  <main>
+    <section id="salas">
+      <h2>Escolha uma sala:</h2>
+      <button onclick="selecionarSala('Nave')">Nave</button>
+      <button onclick="selecionarSala('Sublime')">Sublime</button>
+      <button onclick="selecionarSala('Kids')">Kids</button>
+    </section>
 
-  <div class="sala-opcoes">
-    <button onclick="selecionarSala('Nave')">Nave</button>
-    <button onclick="selecionarSala('Escolinha')">Escolinha</button>
-  </div>
+    <section id="formReserva" style="display: none;">
+      <h2>Reserva para: <span id="salaSelecionada"></span></h2>
+      <label for="dataInicio">Data Início:</label>
+      <input type="date" id="dataInicio"/>
 
-  <div id="formReserva" style="display:none; margin-top: 20px;">
-    <h3>Reservar sala: <span id="salaSelecionada"></span></h3>
+      <label for="horarioInicio">Hora Início:</label>
+      <input type="time" id="horarioInicio"/>
 
-    <label for="dataInicio">Data de início:</label>
-    <input type="date" id="dataInicio" required>
+      <label for="dataFim">Data Fim:</label>
+      <input type="date" id="dataFim"/>
 
-    <label for="dataFim">Data de fim:</label>
-    <input type="date" id="dataFim" required>
+      <label for="horarioFim">Hora Fim:</label>
+      <input type="time" id="horarioFim"/>
 
-    <label for="horarioInicio">Horário de início:</label>
-    <input type="time" id="horarioInicio" required>
+      <label for="finalidade">Finalidade:</label>
+      <input type="text" id="finalidade" placeholder="Ex: Ensaio, Reunião..."/>
 
-    <label for="horarioFim">Horário de fim:</label>
-    <input type="time" id="horarioFim" required>
+      <button onclick="fazerReserva()">Reservar</button>
+    </section>
 
-    <label for="finalidade">Finalidade da reserva:</label>
-    <input type="text" id="finalidade" required>
-
-    <button onclick="fazerReserva()">Confirmar Reserva</button>
-  </div>
-
-  <button class="logout-btn" onclick="logout()">Sair</button>
-
-  <h3>Reservas já feitas:</h3>
-  <ul id="listaReservas" class="reserva-lista"></ul>
+    <section id="reservas">
+      <h2>Reservas já feitas:</h2>
+      <ul id="listaReservas"></ul>
+    </section>
+  </main>
 
   <script src="telainicial.js"></script>
 </body>
