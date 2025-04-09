@@ -66,8 +66,7 @@ async function fetchReservas() {
       const item = document.createElement("li");
       item.classList.add("reserva-item");
 
-      // Corrigindo fuso horário com toLocaleString
-      const dataHoraInicioFormatada = new Date(`${reserva.dataInicio}T${reserva.horarioInicio}`).toLocaleString("pt-BR", {
+      const dataHoraInicioFormatada = new Date(reserva.dataHoraInicio).toLocaleString("pt-BR", {
         timeZone: "America/Fortaleza",
         day: "2-digit",
         month: "2-digit",
@@ -76,7 +75,7 @@ async function fetchReservas() {
         minute: "2-digit"
       });
 
-      const dataHoraFimFormatada = new Date(`${reserva.dataFim}T${reserva.horarioFim}`).toLocaleString("pt-BR", {
+      const dataHoraFimFormatada = new Date(reserva.dataHoraFim).toLocaleString("pt-BR", {
         timeZone: "America/Fortaleza",
         day: "2-digit",
         month: "2-digit",
