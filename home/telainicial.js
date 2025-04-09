@@ -18,7 +18,6 @@ async function fazerReserva() {
     return alert("Preencha todos os campos!");
   }
 
-  // Junta data + hora no formato ISO
   const dataHoraInicio = new Date(`${dataInicio}T${horarioInicio}:00`);
   const dataHoraFim = new Date(`${dataFim}T${horarioFim}:00`);
 
@@ -28,10 +27,14 @@ async function fazerReserva() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         sala,
-        dataHoraInicio,
-        dataHoraFim,
+        dataInicio,
+        dataFim,
+        horarioInicio,
+        horarioFim,
         finalidade,
         usuarioId: usuario._id,
+        dataHoraInicio,
+        dataHoraFim,
       }),
     });
 
