@@ -7,11 +7,15 @@ function selecionarSala(nome) {
 }
 
 async function fazerReserva() {
-  const dataSelecionada = document.getElementById("data").value;
+  const dataInicio = document.getElementById("dataInicio").value;
+  const dataFim = document.getElementById("dataFim").value;
+  const horarioInicio = document.getElementById("horarioInicio").value;
+  const horarioFim = document.getElementById("horarioFim").value;
+  const finalidade = document.getElementById("finalidade").value;
   const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
 
-  if (!dataSelecionada) {
-    return alert("Selecione uma data!");
+  if (!dataInicio || !dataFim || !horarioInicio || !horarioFim || !finalidade) {
+    return alert("Preencha todos os campos!");
   }
 
   try {
@@ -20,7 +24,11 @@ async function fazerReserva() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         sala,
-        data: dataSelecionada,
+        dataInicio,
+        dataFim,
+        horarioInicio,
+        horarioFim,
+        finalidade,
         usuarioId: usuario._id,
       }),
     });
@@ -55,11 +63,10 @@ async function fetchReservas() {
     lista.innerHTML = "";
 
     reservas.forEach((reserva) => {
-      const apelido = reserva.usuarioId?.apelido || "Usuário não encontrado";
+      const apelido = reserva.usuarioId?.apelido || "Usuário";
       const item = document.createElement("li");
-      item.textContent = `Sala: ${reserva.sala} | Data: ${reserva.data} | Por: ${apelido} `;
+      item.textContent = `Sala: ${reserva.sala} | De: ${reserva.dataInicio} às ${reserva.horarioInicio} até ${reserva.dataFim} às ${reserva.horarioFim} | Finalidade: ${reserva.finalidade} | Por: ${apelido}`;
 
-      // Só mostra o botão se o usuário logado for o dono da reserva
       if (reserva.usuarioId?._id === usuario._id) {
         const botaoExcluir = document.createElement("button");
         botaoExcluir.textContent = "Excluir";
@@ -76,15 +83,12 @@ async function fetchReservas() {
 
 async function excluirReserva(idReserva) {
   const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
-
   if (!confirm("Tem certeza que deseja excluir esta reserva?")) return;
 
   try {
     const response = await fetch(`https://reserva-salas-backend.onrender.com/reservas/${idReserva}`, {
       method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ usuarioId: usuario._id }),
     });
 

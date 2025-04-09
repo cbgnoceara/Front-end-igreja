@@ -19,11 +19,23 @@
 
   <div id="formReserva" style="display:none; margin-top: 20px;">
     <h3>Reservar sala: <span id="salaSelecionada"></span></h3>
-    <label for="data">Escolha a data:</label>
-    <input type="date" id="data" required>
+
+    <label for="dataInicio">Data de início:</label>
+    <input type="date" id="dataInicio" required>
+
+    <label for="dataFim">Data de fim:</label>
+    <input type="date" id="dataFim" required>
+
+    <label for="horarioInicio">Horário de início:</label>
+    <input type="time" id="horarioInicio" required>
+
+    <label for="horarioFim">Horário de fim:</label>
+    <input type="time" id="horarioFim" required>
+
+    <label for="finalidade">Finalidade da reserva:</label>
+    <input type="text" id="finalidade" required>
+
     <button onclick="fazerReserva()">Confirmar Reserva</button>
-    <p id="infoNave"></p>
-    <p id="infoEscolinha"></p>
   </div>
 
   <button class="logout-btn" onclick="logout()">Sair</button>
