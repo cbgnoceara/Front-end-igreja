@@ -63,9 +63,10 @@ async function fetchReservas() {
     lista.innerHTML = "";
 
     reservas.forEach((reserva) => {
-      const apelido = reserva.usuarioId?.apelido || "Usuário";
-      const item = document.createElement("li");
-      item.textContent = `Sala: ${reserva.sala} | De: ${reserva.dataInicio} às ${reserva.horarioInicio} até ${reserva.dataFim} às ${reserva.horarioFim} | Finalidade: ${reserva.finalidade} | Por: ${apelido}`;
+      const dataInicioFormatada = new Date(reserva.dataInicio).toLocaleDateString("pt-BR");
+      const dataFimFormatada = new Date(reserva.dataFim).toLocaleDateString("pt-BR");
+      
+      item.textContent = `Sala: ${reserva.sala} | De: ${dataInicioFormatada} às ${reserva.horarioInicio} até ${dataFimFormatada} às ${reserva.horarioFim} | Finalidade: ${reserva.finalidade} | Por: ${apelido}`;      
 
       if (reserva.usuarioId?._id === usuario._id) {
         const botaoExcluir = document.createElement("button");
