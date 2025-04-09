@@ -9,15 +9,15 @@
 <body>
   <header>
     <h1>Reservas de Salas</h1>
-    <button onclick="logout()">Sair</button>
+    <button id="logout" onclick="logout()">Sair</button>
   </header>
 
   <main>
-    <section id="salas">
+    <section id="salas" class="salas">
       <h2>Escolha uma sala:</h2>
-      <button onclick="selecionarSala('Nave')">Nave</button>
-      <button onclick="selecionarSala('Sublime')">Sublime</button>
-      <button onclick="selecionarSala('Kids')">Kids</button>
+      <button class="sala-btn" onclick="selecionarSala('Nave')">Nave</button>
+      <button class="sala-btn" onclick="selecionarSala('Sublime')">Sublime</button>
+      <button class="sala-btn" onclick="selecionarSala('Kids')">Kids</button>
     </section>
 
     <section id="formReserva" style="display: none;">
