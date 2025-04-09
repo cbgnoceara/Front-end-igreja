@@ -18,16 +18,18 @@ async function fazerReserva() {
     return alert("Preencha todos os campos!");
   }
 
+  // Junta data + hora no formato ISO
+  const dataHoraInicio = new Date(`${dataInicio}T${horarioInicio}:00`);
+  const dataHoraFim = new Date(`${dataFim}T${horarioFim}:00`);
+
   try {
     const response = await fetch("https://reserva-salas-backend.onrender.com/reservar", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         sala,
-        dataInicio,
-        dataFim,
-        horarioInicio,
-        horarioFim,
+        dataHoraInicio,
+        dataHoraFim,
         finalidade,
         usuarioId: usuario._id,
       }),
@@ -66,7 +68,7 @@ async function fetchReservas() {
       const item = document.createElement("li");
       item.classList.add("reserva-item");
 
-      const dataHoraInicioFormatada = new Date(reserva.dataHoraInicio + 'Z').toLocaleString("pt-BR", {
+      const dataHoraInicioFormatada = new Date(reserva.dataHoraInicio).toLocaleString("pt-BR", {
         timeZone: "America/Fortaleza",
         day: "2-digit",
         month: "2-digit",
@@ -74,15 +76,15 @@ async function fetchReservas() {
         hour: "2-digit",
         minute: "2-digit"
       });
-      
-      const dataHoraFimFormatada = new Date(reserva.dataHoraFim + 'Z').toLocaleString("pt-BR", {
+
+      const dataHoraFimFormatada = new Date(reserva.dataHoraFim).toLocaleString("pt-BR", {
         timeZone: "America/Fortaleza",
         day: "2-digit",
         month: "2-digit",
         year: "numeric",
         hour: "2-digit",
         minute: "2-digit"
-      });      
+      });
 
       const apelido = reserva.usuarioId?.apelido || "Desconhecido";
 
