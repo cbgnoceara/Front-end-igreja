@@ -63,16 +63,33 @@ async function fetchReservas() {
     lista.innerHTML = "";
 
     reservas.forEach((reserva) => {
-      const item = document.createElement("li"); // Criando o item corretamente
+      const item = document.createElement("li");
       item.classList.add("reserva-item");
 
-      const dataInicioFormatada = new Date(reserva.dataInicio).toLocaleDateString("pt-BR");
-      const dataFimFormatada = new Date(reserva.dataFim).toLocaleDateString("pt-BR");
+      // Corrigindo fuso horário com toLocaleString
+      const dataHoraInicioFormatada = new Date(`${reserva.dataInicio}T${reserva.horarioInicio}`).toLocaleString("pt-BR", {
+        timeZone: "America/Fortaleza",
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+
+      const dataHoraFimFormatada = new Date(`${reserva.dataFim}T${reserva.horarioFim}`).toLocaleString("pt-BR", {
+        timeZone: "America/Fortaleza",
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+
       const apelido = reserva.usuarioId?.apelido || "Desconhecido";
 
       item.innerHTML = `
         <strong>${reserva.sala}</strong><br>
-        <span>🗓️ ${dataInicioFormatada} às ${reserva.horarioInicio} até ${dataFimFormatada} às ${reserva.horarioFim}</span><br>
+        <span>🗓️ ${dataHoraInicioFormatada} até ${dataHoraFimFormatada}</span><br>
         <span>🎯 ${reserva.finalidade}</span><br>
         <span>👤 ${apelido}</span>
       `;
