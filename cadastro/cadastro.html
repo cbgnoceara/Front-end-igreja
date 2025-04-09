@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cadastro - Reserva de Salas</title>
+  <link rel="stylesheet" href="cadastro.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Cadastro</h1>
+    <form action="/cadastro" method="POST" class="form-group">
+      <input type="text" name="apelido" placeholder="Apelido" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="senha" placeholder="Senha" required>
+      <button type="submit" class="btn">Cadastrar</button>
+    </form>
+    <p>Já tem uma conta? <a href="/login/login.html">Entrar</a></p>
+  </div>
+</body>
+</html>
