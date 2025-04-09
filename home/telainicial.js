@@ -15,7 +15,7 @@ async function fazerReserva() {
   }
 
   try {
-    const response = await fetch("http://localhost:3000/reservar", {
+    const response = await fetch("https://reserva-salas-backend.onrender.com/reservar", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -47,7 +47,7 @@ function logout() {
 
 async function fetchReservas() {
   try {
-    const response = await fetch("http://localhost:3000/reservas");
+    const response = await fetch("https://reserva-salas-backend.onrender.com/reservas");
     const reservas = await response.json();
 
     const lista = document.getElementById("listaReservas");

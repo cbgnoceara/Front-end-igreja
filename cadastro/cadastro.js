@@ -6,7 +6,7 @@ document.getElementById("formCadastro").addEventListener("submit", async functio
     const senha = document.getElementById("senha").value;
   
     try {
-      const response = await fetch("http://localhost:3000/cadastro", {
+      const response = await fetch("https://reserva-salas-backend.onrender.com/cadastro", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
