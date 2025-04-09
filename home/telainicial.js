@@ -66,7 +66,7 @@ async function fetchReservas() {
       const item = document.createElement("li");
       item.classList.add("reserva-item");
 
-      const dataHoraInicioFormatada = new Date(reserva.dataHoraInicio).toLocaleString("pt-BR", {
+      const dataHoraInicioFormatada = new Date(reserva.dataHoraInicio + 'Z').toLocaleString("pt-BR", {
         timeZone: "America/Fortaleza",
         day: "2-digit",
         month: "2-digit",
@@ -74,15 +74,15 @@ async function fetchReservas() {
         hour: "2-digit",
         minute: "2-digit"
       });
-
-      const dataHoraFimFormatada = new Date(reserva.dataHoraFim).toLocaleString("pt-BR", {
+      
+      const dataHoraFimFormatada = new Date(reserva.dataHoraFim + 'Z').toLocaleString("pt-BR", {
         timeZone: "America/Fortaleza",
         day: "2-digit",
         month: "2-digit",
         year: "numeric",
         hour: "2-digit",
         minute: "2-digit"
-      });
+      });      
 
       const apelido = reserva.usuarioId?.apelido || "Desconhecido";
 
