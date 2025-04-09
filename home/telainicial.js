@@ -6,6 +6,12 @@ function selecionarSala(nome) {
   document.getElementById("formReserva").style.display = "block";
 }
 
+function criarDataLocal(data, hora) {
+  const [ano, mes, dia] = data.split("-");
+  const [horaStr, minutoStr] = hora.split(":");
+  return new Date(ano, mes - 1, dia, horaStr, minutoStr);
+}
+
 async function fazerReserva() {
   const dataInicio = document.getElementById("dataInicio").value;
   const dataFim = document.getElementById("dataFim").value;
@@ -18,8 +24,8 @@ async function fazerReserva() {
     return alert("Preencha todos os campos!");
   }
 
-  const dataHoraInicio = new Date(`${dataInicio}T${horarioInicio}:00`);
-  const dataHoraFim = new Date(`${dataFim}T${horarioFim}:00`);
+  const dataHoraInicio = criarDataLocal(dataInicio, horarioInicio);
+  const dataHoraFim = criarDataLocal(dataFim, horarioFim);
 
   try {
     const response = await fetch("https://reserva-salas-backend.onrender.com/reservar", {
