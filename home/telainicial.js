@@ -54,8 +54,9 @@ async function fetchReservas() {
     lista.innerHTML = ""; // limpa a lista
 
     reservas.forEach((reserva) => {
+      const apelido = reserva.usuarioId?.apelido || "Usuário não encontrado";
       const item = document.createElement("li");
-      item.textContent = `Sala: ${reserva.sala} | Data: ${reserva.data} | Por: ${reserva.usuarioId.apelido}`;
+      item.textContent = `Sala: ${reserva.sala} | Data: ${reserva.data} | Por: ${apelido}`;
       lista.appendChild(item);
     });
   } catch (err) {
@@ -63,7 +64,7 @@ async function fetchReservas() {
   }
 }
 
-// Chama quando a página carregar
+// Carrega reservas ao iniciar a página
 window.onload = () => {
   fetchReservas();
 };
