@@ -63,14 +63,24 @@ async function fetchReservas() {
     lista.innerHTML = "";
 
     reservas.forEach((reserva) => {
+      const item = document.createElement("li"); // Criando o item corretamente
+      item.classList.add("reserva-item");
+
       const dataInicioFormatada = new Date(reserva.dataInicio).toLocaleDateString("pt-BR");
       const dataFimFormatada = new Date(reserva.dataFim).toLocaleDateString("pt-BR");
-      
-      item.textContent = `Sala: ${reserva.sala} | De: ${dataInicioFormatada} às ${reserva.horarioInicio} até ${dataFimFormatada} às ${reserva.horarioFim} | Finalidade: ${reserva.finalidade} | Por: ${apelido}`;      
+      const apelido = reserva.usuarioId?.apelido || "Desconhecido";
+
+      item.innerHTML = `
+        <strong>${reserva.sala}</strong><br>
+        <span>🗓️ ${dataInicioFormatada} às ${reserva.horarioInicio} até ${dataFimFormatada} às ${reserva.horarioFim}</span><br>
+        <span>🎯 ${reserva.finalidade}</span><br>
+        <span>👤 ${apelido}</span>
+      `;
 
       if (reserva.usuarioId?._id === usuario._id) {
         const botaoExcluir = document.createElement("button");
         botaoExcluir.textContent = "Excluir";
+        botaoExcluir.classList.add("btn-excluir");
         botaoExcluir.onclick = () => excluirReserva(reserva._id);
         item.appendChild(botaoExcluir);
       }
